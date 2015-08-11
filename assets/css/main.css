@@ -3130,5 +3130,10 @@
 			font-size: 10pt;
 
 		}
+		.circle .image-wrap {
+	-webkit-border-radius: 50em;
+	-moz-border-radius: 50em;
+	border-radius: 50em;
+}
 
 	}
