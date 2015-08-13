@@ -1,7 +1,12 @@
+//load bg image before everything else
+$("body").css("background-image: url(http://cdn.playbuzz.com/cdn/09f8f7dd-c046-4a1f-8339-f40c0ddc786f/49887369-2992-45c9-9eb9-7a4f526c6fb7.jpg) ;")
+
+//function to check item inside an array
 function isInArray(value, array) {
 	return array.indexOf(value) > -1;
 }
 
+//
 var inventory = ["Water", "Chocolate"];
 var correctAns= 0;
 
