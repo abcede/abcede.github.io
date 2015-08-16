@@ -12,7 +12,7 @@ function isInArray(value, array) {
 var inventory = ["Water", "Chocolate"];
 var correctAns= 0;
 
-alert("random Message")
+alert("random Message");
 
 alert("Your journey takes you to the deep caves. After a while you come across two tunnels going different ways");
 
