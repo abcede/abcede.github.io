@@ -1,14 +1,19 @@
-//button
-//function startGame()
+
 //load bg image before everything else
 $("body").css("background-image: url(http://cdn.playbuzz.com/cdn/09f8f7dd-c046-4a1f-8339-f40c0ddc786f/49887369-2992-45c9-9eb9-7a4f526c6fb7.jpg) ;")
+
+//init gameStart
+gameStart = 0;
 
 //function to check item inside an array
 function isInArray(value, array) {
 	return array.indexOf(value) > -1;
 }
 
-//
+//This function holds the whole game and only starts when index.html's button gets pressed
+function startTheGame () {
+
+// GAME STARTS HERE
 var inventory = ["Water", "Chocolate"];
 var correctAns= 0;
 
@@ -82,7 +87,7 @@ while (correctAns != 1) {
 }// end while
 
 //BUTTON SCENE
-if (survive = 1) {
+if (survive == 1) {
 	alert("As you continue down the tunnel, you come across a button");
 	var yesOrNo3 = prompt("Do you press the button? Type Yes or No").toUpperCase();
 	var correctAns = 0;
@@ -91,15 +96,22 @@ if (survive = 1) {
 		switch (yesOrNo3) {
 			case "YES":
 				alert("It opens up a room with a chest.");
+				correctAns=1;
 			break;
 
 			case "NO":
 				//continue exploration
+				alert("The button looks like a trap, you avoid the urge to press it and move on...");
+				correctAns=1;
 			break;
 
 			default:
 				//what??
+				alert("The button may change your life, do you press it or not? Make a decision quick!");
 			break;
 		}//end switch
 	}//end while check
 }//end if check
+
+
+} // GAME START FUNCTION
