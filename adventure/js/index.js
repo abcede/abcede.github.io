@@ -5,10 +5,26 @@ $("body").css("background-image: url(http://cdn.playbuzz.com/cdn/09f8f7dd-c046-4
 //init gameStart
 gameStart = 0;
 
+
+
+
 //function to check item inside an array
 function isInArray(value, array) {
 	return array.indexOf(value) > -1;
 }
+
+
+function removeItem(array, item){
+	for(var i in array){
+		if (array[i] == item){
+			array.splice(i,1);
+		}
+	}
+}
+
+
+
+
 
 //This function holds the whole game and only starts when index.html's button gets pressed
 function startTheGame () {
@@ -21,6 +37,7 @@ alert("Your journey takes you to the deep caves. After a while you come across t
 
 var leftOrRight1 = prompt("Do you go left or right?").toUpperCase();
 
+	
 if (leftOrRight1 == "LEFT") {
     alert("you walk along a dark corridor, finding another that splits off");
     alert("you dive in deeper into the tunnel");
@@ -52,19 +69,22 @@ if (leftOrRight1 == "LEFT") {
 //RAPTOR SCENE
 
 alert("You continue your exploratiokn of the caves. Later on, you encounter a sleeping rapter, twice the size of any other you've seen.");
-var yesOrNo2 = prompt("Do you try to ambush the rapter or do you try to sneak past it? Type Ambush or Sneak").toUpperCase();
-var correctAns = 0;
-var survive = 0;
+	var correctAns = 0;
+	var survive = 0;
 
 while (correctAns != 1) {
+	var yesOrNo2 = prompt("Do you try to ambush the rapter or do you try to sneak past it? Type Ambush or Sneak").toUpperCase();
+
 	switch (yesOrNo2) {
 		case "AMBUSH":
 		//what happens on ambush
 
-			var check = isInArray("Water", inventory); 
-			alert(check);
+			var check = isInArray('Sword', inventory); 
+			//alert('First check before removing the sword is '+check); //
 			if (check == true) {
 				alert("You succesfully plunge the sword into the rapters back, killing it instantly. You continue on your journey");
+				alert("The acid blood of the rapter rots the sword, leaving it useless to your cause. You decide to leave the sword in the rapters back. You continue your journey.");
+				removeItem(inventory,"Sword"); //remove sword
 				survive=1;
 				correctAns=1;
 			}else{
@@ -86,13 +106,18 @@ while (correctAns != 1) {
 	}//end switch
 }// end while
 
+
+
 //BUTTON SCENE
 if (survive == 1) {
+	survive=0;
 	alert("As you continue down the tunnel, you come across a button");
-	var yesOrNo3 = prompt("Do you press the button? Type Yes or No").toUpperCase();
-	var correctAns = 0;
+		var correctAns = 0;
+		var sceneSkip = false;
 
 	while (correctAns!=1) {
+		var yesOrNo3 = prompt("Do you press the button? Type Yes or No").toUpperCase();
+
 		switch (yesOrNo3) {
 			case "YES":
 				alert("It opens up a room with a chest.");
@@ -103,15 +128,55 @@ if (survive == 1) {
 				//continue exploration
 				alert("The button looks like a trap, you avoid the urge to press it and move on...");
 				correctAns=1;
+				sceneSkip = true;
+				survive=1;
 			break;
 
 			default:
-				//what??
 				alert("The button may change your life, do you press it or not? Make a decision quick!");
 			break;
 		}//end switch
 	}//end while check
 }//end if check
 
+
+
+//CHEST SCENE
+	if (sceneSkip == false) { 
+		alert("CHEST MAKES A RUMBLING NOISE");
+		var yesOrNo4 = prompt("Do you open the chest? Type Yes or No").toUpperCase();
+		var correctAns = 0;
+
+		while (correctAns!=1) {
+			switch (yesOrNo4) {
+				case "YES":
+					alert("You open the chest - and to your delight - find it filed with gold coins. You grab as many as you can, though not realising you grow considerably weaker with each coin you stuff into your pouch");
+					alert("as you stuff the very last coin into your pouch, you finally notice your fatigue. You drop to the ground and lay there. You do not have the strength needed to get up and eat. You starve to death");
+					alert("Your journey ends with your greed.");
+					correctAns=1;
+				break;
+
+				case "NO":
+					//continue exploration
+					alert(survive);
+					alert("The chest looks like a trap, you avoid the urge to open it, it seems you will never know what the chest held. You move on...");
+					correctAns=1;
+					survive=1;
+				break;
+
+				default:
+					//what??
+					alert("The button may change your life, do you press it or not? Make a decision quick!");
+				break;
+			}//end switch
+		}//end while check
+	}
+
+
+//SCENE 5
+alert('BEFORE SCENE 5 its ' + survive);
+if (survive == 1) {
+scene5();
+}
 
 } // GAME START FUNCTION
